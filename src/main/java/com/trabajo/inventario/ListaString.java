@@ -1,9 +1,5 @@
 package com.trabajo.inventario;
 
-/**
- *
- * @author claud
- */
 public class ListaString {
     public NodoString primero;
     public byte size;

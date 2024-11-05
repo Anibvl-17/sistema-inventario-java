@@ -2,10 +2,6 @@ package com.trabajo.inventario;
 
 import java.util.Scanner;
 
-/**
- *
- * @author claud
- */
 public class Validador {
     
     private static Scanner sc = new Scanner(System.in);
