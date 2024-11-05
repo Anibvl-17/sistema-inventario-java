@@ -6,11 +6,16 @@ public class Validador {
     
     private static Scanner sc = new Scanner(System.in);
     
-    // No hay necesidad de crear una instancia de esta clase
-    // por lo tanto es privada.
+    // No hay necesidad de crear una instancia de esta clase por lo tanto es privada.
     private Validador(){};
     
-    // Valida un byte dentro del rango [min, max]
+    /**
+     * Valida el ingreso de un numero tipo byte dentro del rango especificado
+     * 
+     * @param min El valor minimo
+     * @param max El valor maximo
+     * @return El numero ingresado
+     */
     public static byte ingresarByte(byte min, byte max) {
         boolean flag = false;
         byte b = 0;
@@ -39,6 +44,13 @@ public class Validador {
         return b;
     }
     
+    /**
+     * Valida el ingreso de un numero tipo int dentro del rango especificado
+     * 
+     * @param min El valor minimo
+     * @param max El valor maximo
+     * @return El numero ingresado
+     */
     public static int ingresarInt(int min, int max) {
         boolean flag = false;
         int i = 0;
@@ -73,8 +85,13 @@ public class Validador {
         return i;
     }
     
-    // Admite solo letras y espacios si conNumeros = false.
-    // Admite numeros, letras y espacios si conNumeros = true.
+    /**
+     * Valida el ingreso de una palabra de solo letras y espacios
+     * 
+     * @param largo El largo maximo del texto a ingresar
+     * @param conNumeros Permite números en el texto a ingresar
+     * @return El texto validado
+     */
     public static String ingresarString(byte largo, boolean conNumeros) {
         boolean flag;
         String str;
@@ -124,6 +141,11 @@ public class Validador {
         return str;
     }
 
+    /**
+     * Muestra la lista de estilos y valida el ingreso
+     * 
+     * @return El valor numerico del estilo
+     */
     public static byte ingresarEstilo() {        
         System.out.println("1. Casual    | 5. Urbano");
         System.out.println("2. Formal    | 6. Escolar");
@@ -132,6 +154,12 @@ public class Validador {
         return ingresarByte((byte)0, (byte)8);
     }
     
+    /**
+     * Devuelve el nombre del estilo segun la opcion ingresada
+     * 
+     * @param estilo Opcion entre 1 y 8
+     * @return El nombre del estilo
+     */
     public static String obtenerEstilo(byte estilo) {
         switch(estilo) {
             case 1: return "Casual";
@@ -146,27 +174,39 @@ public class Validador {
         }
     }
     
+    /** 
+     * Valida el ingreso de un tipo de prenda guardado en lista
+     * Permite agregar un nuevo tipo de prenda llamando a registrarTipoPrenda()
+     * 
+     * @param lista Lista de tipos de prenda
+     * @return el tipo de prenda ingresado
+     */
     public static String ingresarTipoPrenda(ListaString lista) {
         lista.mostrar(true);
+        
         System.out.println("0. Agregar un tipo de prenda");
         byte opcion = Validador.ingresarByte((byte)0, lista.size);
+        
         NodoString actual = lista.primero;
         if(opcion == 0) {
-            registrarTipoPrenda(lista);
-            while(actual.siguiente != null) actual = actual.siguiente;
-            
-            return actual.data;
+            return registrarTipoPrenda(lista);
         } else {
             for(byte i = 1; i < opcion; i++) actual = actual.siguiente;
             return actual.data;
         }
     }
     
+    /**
+     * Valida el registro de una nueva prenda para evitar repeticiones
+     * 
+     * @param lista Lista de tipos de prenda
+     * @return El nuevo tipo de prenda
+     */
     public static String registrarTipoPrenda(ListaString lista)  {
         System.out.println("Ingrese el tipo de prenda:");
         String tipoNuevo;
-        boolean flag = false;
         
+        boolean flag = false;
         do {
             tipoNuevo = Validador.ingresarString((byte)25, false);
             if(!lista.contiene(tipoNuevo)) {

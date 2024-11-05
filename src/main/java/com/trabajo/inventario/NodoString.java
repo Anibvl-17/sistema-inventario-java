@@ -1,10 +1,10 @@
 package com.trabajo.inventario;
 
 public class NodoString {
-    String data;
-    NodoString siguiente;
+    public String data;
+    public NodoString siguiente;
     
-    NodoString(String data) {
+    public NodoString(String data) {
         this.data = data;
         this.siguiente = null;
     }

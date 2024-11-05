@@ -223,7 +223,7 @@ public class Main {
         System.out.println("Estilo:");
         nuevoProducto.setEstilo(Validador.ingresarEstilo());
         
-        inventario.agregarProducto(nuevoProducto);
+        inventario.agregar(nuevoProducto);
         System.out.println("El producto \"" + nuevoProducto.getNombre() + 
                 "\" se ha agregado con exito.");
         
@@ -248,7 +248,7 @@ public class Main {
             return;
         }
         
-        inventario.eliminarProducto(producto);
+        inventario.eliminar(producto);
         System.out.println("El producto se elimino con exito.");
         
         generarHistorial("Eliminar", nombre);
@@ -353,10 +353,10 @@ public class Main {
         Item item4 = new Item("Producto 4", 400, (byte)40, "Mat4", "Col4", "Mar4",
             "Tip4", (byte)4);
         
-        inventario.agregarProducto(item1);
-        inventario.agregarProducto(item2);
-        inventario.agregarProducto(item3);
-        inventario.agregarProducto(item4);
+        inventario.agregar(item1);
+        inventario.agregar(item2);
+        inventario.agregar(item3);
+        inventario.agregar(item4);
         
         tiposPrenda = new ListaString();
         tiposPrenda.agregar("Pantalon");

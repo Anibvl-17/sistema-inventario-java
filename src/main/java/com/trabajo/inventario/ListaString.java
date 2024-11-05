@@ -61,22 +61,18 @@ public class ListaString {
     // Devuelve un Item que coincida con el parametro "nombre".
     // Devuelve null si la lista esta vacia o si no encuentra el producto.
     public boolean contiene(String data) {
-        if(estaVacio()) {
+        if(estaVacio())
             return false;
-        }
-        
-        if (primero.data.equals(data)) {
-            return true;
-        }
-        
-        NodoString actual = primero;
 
-        while(actual.siguiente != null 
-                && !actual.siguiente.data.equals(data)) {
+        NodoString actual = primero;
+        while(actual != null) {
+            if(data.equals(actual.data))
+                return true;
+            
             actual = actual.siguiente;
         }
         
-        return actual.siguiente != null;
+        return false;
     }
     
     public void mostrar(boolean modoLista) {

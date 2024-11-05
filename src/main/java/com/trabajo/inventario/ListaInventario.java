@@ -14,7 +14,7 @@ public class ListaInventario {
         return primero == null;
     }
     
-    public void agregarProducto(Item producto) {
+    public void agregar(Item producto) {
         NodoItem nuevo = new NodoItem(producto);
         size++;
         
@@ -32,7 +32,7 @@ public class ListaInventario {
         actual.siguiente = nuevo;
     }
     
-    public void eliminarProducto(Item producto) {
+    public void eliminar(Item producto) {
         if(estaVacio()) {
             return;
         }
@@ -61,27 +61,18 @@ public class ListaInventario {
     // Devuelve un Item que coincida con el parametro "nombre".
     // Devuelve null si la lista esta vacia o si no encuentra el producto.
     public Item buscarPorNombre(String nombre) {
-        if(estaVacio()) {
+        if(estaVacio())
             return null;
-        }
-        
-        if (primero.data.getNombre().equals(nombre)) {
-            return primero.data;
-        }
-        
-        NodoItem actual = primero;
 
-        while(actual.siguiente != null 
-                && !actual.siguiente.data.getNombre().equals(nombre)) {
+        NodoItem actual = primero;
+        while(actual != null) {
+            if (actual.data.getNombre().equals(nombre))
+                return actual.data;
+            
             actual = actual.siguiente;
         }
         
-        if(actual.siguiente != null) {
-            return actual.siguiente.data;
-        }
-        
         return null;
-        
     }
     
     public void mostrar() {
