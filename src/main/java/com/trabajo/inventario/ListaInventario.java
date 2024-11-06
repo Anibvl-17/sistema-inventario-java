@@ -34,6 +34,7 @@ public class ListaInventario {
     
     public void eliminar(Item producto) {
         if(estaVacio()) {
+            System.out.println("El inventario esta vacio.");
             return;
         }
         
@@ -61,8 +62,10 @@ public class ListaInventario {
     // Devuelve un Item que coincida con el parametro "nombre".
     // Devuelve null si la lista esta vacia o si no encuentra el producto.
     public Item buscarPorNombre(String nombre) {
-        if(estaVacio())
+        if(estaVacio()) {
+            System.out.println("El inventario esta vacio.");
             return null;
+        }
 
         NodoItem actual = primero;
         while(actual != null) {
@@ -72,11 +75,13 @@ public class ListaInventario {
             actual = actual.siguiente;
         }
         
+        System.out.println("El producto \"" + nombre + "\" no existe.");
         return null;
     }
     
     public void mostrar() {
         if(estaVacio()) {
+            System.out.println("El inventario esta vacio.");
             return;
         }
         
