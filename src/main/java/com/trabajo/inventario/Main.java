@@ -263,14 +263,14 @@ public class Main {
     }
     
     public static void consultarTalla() {
-        Item producto = buscarProducto();
+        Item item = buscarProducto();
         
-        if(producto != null) {
-            System.out.println("La talla del producto \""+ producto.getNombre() +
-                "\" es " + producto.getTalla() + ".");
+        if(item != null) {
+            System.out.println("La talla del producto \""+ item.getNombre() +
+                "\" es " + item.getTalla() + ".");
         
-            generarHistorial((byte)3, "Talla de \"" + producto.getNombre()
-                + "\" = " + producto.getTalla());
+            generarHistorial((byte)3, "Talla de \"" + item.getNombre()
+                + "\" = " + item.getTalla());
         }
     }
    
@@ -302,6 +302,7 @@ public class Main {
         while(actual != null) {
             if (actual.data.getEstilo() == estilo) {
                 mostrarProducto(actual.data);
+                actual.toString();
                 existe = true;
             }
             
@@ -339,6 +340,7 @@ public class Main {
         historial.agregar(mensaje);
     }
     
+    // Pendiente
     public static void cargarInventario()  {
         inventario = new ListaInventario();
         
@@ -369,23 +371,34 @@ public class Main {
         // TODO Guardar inventario
     }
     
+    /**
+     * Imprime saltos de linea para una mejor experiencia visual.
+     */
     public static void limpiarConsola() {
         System.out.println("\n\n\n\n\n\n\n\n\n");
     }
     
+    /**
+     * Pausa el programa hasta que se presione la tecla Enter
+     */
     public static void pausa() {
-        System.out.println("\nPresione Enter para volver...");
+        System.out.print("\nPresione Enter para volver...");
         sc.nextLine();
     }
     
-    public static void mostrarProducto(Item producto) {
-        System.out.println("..:: " + producto.getNombre() + " ::..");
-        System.out.println("Precio: $" + producto.getPrecio());
-        System.out.println("Talla: " + producto.getTalla());
-        System.out.println("Material: " + producto.getMaterial());
-        System.out.println("Color: " + producto.getColor());
-        System.out.println("Marca: " + producto.getMarca());
-        System.out.println("Tipo de Prenda: " + producto.getTipoPrenda());
-        System.out.println("Estilo: " + Validador.obtenerEstilo(producto.getEstilo()));
+    /**
+     * Muestra todos los detalles del Item
+     * 
+     * @param item elemento a mostrar
+     */
+    public static void mostrarProducto(Item item) {
+        System.out.println("..:: " + item.getNombre() + " ::..");
+        System.out.println("Precio: $" + item.getPrecio());
+        System.out.println("Talla: " + item.getTalla());
+        System.out.println("Material: " + item.getMaterial());
+        System.out.println("Color: " + item.getColor());
+        System.out.println("Marca: " + item.getMarca());
+        System.out.println("Tipo de Prenda: " + item.getTipoPrenda());
+        System.out.println("Estilo: " + Validador.obtenerEstilo(item.getEstilo()));
     }
 }

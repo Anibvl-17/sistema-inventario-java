@@ -12,9 +12,9 @@ public class Validador {
     /**
      * Valida el ingreso de un numero tipo byte dentro del rango especificado
      * 
-     * @param min El valor minimo
-     * @param max El valor maximo
-     * @return El numero ingresado
+     * @param min  el valor minimo
+     * @param max  el valor maximo
+     * @return     el numero ingresado
      */
     public static byte ingresarByte(byte min, byte max) {
         boolean flag = false;
@@ -47,9 +47,9 @@ public class Validador {
     /**
      * Valida el ingreso de un numero tipo int dentro del rango especificado
      * 
-     * @param min El valor minimo
-     * @param max El valor maximo
-     * @return El numero ingresado
+     * @param min  el valor minimo
+     * @param max  el valor maximo
+     * @return     el numero ingresado
      */
     public static int ingresarInt(int min, int max) {
         boolean flag = false;
@@ -143,7 +143,7 @@ public class Validador {
     /**
      * Muestra la lista de estilos y valida el ingreso
      * 
-     * @return El valor numerico del estilo
+     * @return el valor numerico del estilo
      */
     public static byte ingresarEstilo() {        
         System.out.println("1. Casual    | 5. Urbano");
@@ -156,8 +156,8 @@ public class Validador {
     /**
      * Devuelve el nombre del estilo segun la opcion ingresada
      * 
-     * @param estilo Opcion entre 1 y 8
-     * @return El nombre del estilo
+     * @param estilo  opcion entre 1 y 8
+     * @return        el nombre del estilo
      */
     public static String obtenerEstilo(byte estilo) {
         switch(estilo) {
@@ -177,8 +177,8 @@ public class Validador {
      * Valida el ingreso de un tipo de prenda guardado en lista
      * Permite agregar un nuevo tipo de prenda llamando a registrarTipoPrenda()
      * 
-     * @param lista Lista de tipos de prenda
-     * @return el tipo de prenda ingresado
+     * @param lista lista de tipos de prenda
+     * @return      el tipo de prenda ingresado
      */
     public static String ingresarTipoPrenda(ListaString lista) {
         lista.mostrar(true);
@@ -198,8 +198,8 @@ public class Validador {
     /**
      * Valida el registro de una nueva prenda para evitar repeticiones
      * 
-     * @param lista Lista de tipos de prenda
-     * @return El nuevo tipo de prenda
+     * @param lista lista de tipos de prenda
+     * @return      el nuevo tipo de prenda
      */
     public static String registrarTipoPrenda(ListaString lista)  {
         System.out.println("Ingrese el tipo de prenda:");
