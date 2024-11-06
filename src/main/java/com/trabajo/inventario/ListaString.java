@@ -10,10 +10,20 @@ public class ListaString {
         this.size = 0;
     }
     
+    /**
+     * Verifica si la lista esta vacia
+     * 
+     * @return true si esta vacia, false si existe el primer elemento
+     */
     public boolean estaVacio() {
         return primero == null;
     }
     
+    /**
+     * Agrega un elemento al final de la lista
+     * 
+     * @param data el elemento a agregar
+     */
     public void agregar(String data) {
         NodoString nuevo = new NodoString(data);
         size++;
@@ -31,35 +41,41 @@ public class ListaString {
         }
     }
     
+    /**
+     * Eliminar un elemento de la lista que coincida con el parametro
+     * 
+     * @param data el elemento a eliminar
+     */
     public void eliminar(String data) {
         if(estaVacio()) {
             return;
         }
         
-        if (primero.data.equals(data)) {
-            size--;
-            primero = primero.siguiente;
-            return;
-        }
-        
         NodoString actual = primero;
-        while(actual.siguiente != null 
-                && !actual.siguiente.data.equals(data)) {
+        while(actual != null) {
+            
+            // Elimina el producto si coincide
+            if(actual.data.equals(data)) {
+               size--;
+               actual = actual.siguiente;
+               return;
+            }
+            
+            // Si no coincide, avanza al siguiente
             actual = actual.siguiente;
         }
         
-        // Elimina el producto.
-        if(actual.siguiente.data.equals(data)) {
-           size--;
-           actual.siguiente = actual.siguiente.siguiente;
-           return;
-        }
-        
+        // Si recorre toda la lista y no lo encuentra, muestra el mensaje
         System.out.println("No se encontro el producto.");
     }
     
-    // Devuelve un Item que coincida con el parametro "nombre".
-    // Devuelve null si la lista esta vacia o si no encuentra el producto.
+    /**
+     * Revisa si existe un elemento dentro de la lista
+     * 
+     * @param data  el elemento a comparar
+     * @return      true si existe, false si no existe o la lista esta vacia
+     */
+    // 
     public boolean contiene(String data) {
         if(estaVacio())
             return false;
@@ -75,6 +91,11 @@ public class ListaString {
         return false;
     }
     
+    /**
+     * Muestra los elementos de la lista
+     * 
+     * @param modoLista agrega un numero de lista al mensaje
+     */
     public void mostrar(boolean modoLista) {
         if(estaVacio()) {
             return;
@@ -82,18 +103,21 @@ public class ListaString {
         
         NodoString actual = primero;
         byte i = 1;
-        if(modoLista) System.out.println(i + ". " + actual.data);
-        else System.out.println(actual.data);
         
-        while(actual.siguiente != null) {
-            actual = actual.siguiente;
+        while(actual != null) {
             i++;
             if(modoLista) System.out.println(i + ". " + actual.data);
             else System.out.println(actual.data);
+            
+            actual = actual.siguiente;
         }
     }
     
-    // Calcula el tamaño en bytes de la lista
+    /**
+     * Calcula el tamaño en bytes de la lista
+     * 
+     * @return el tamaño en bytes
+     */
     public short calcularTamaño() {
         if(estaVacio()) {
             return 0;

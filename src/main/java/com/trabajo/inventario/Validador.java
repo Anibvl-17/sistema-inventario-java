@@ -88,9 +88,9 @@ public class Validador {
     /**
      * Valida el ingreso de una palabra de solo letras y espacios
      * 
-     * @param largo El largo maximo del texto a ingresar
-     * @param conNumeros Permite números en el texto a ingresar
-     * @return El texto validado
+     * @param largo      el largo maximo del texto a ingresar
+     * @param conNumeros true para permitir numeros en el texto
+     * @return           el texto validado
      */
     public static String ingresarString(byte largo, boolean conNumeros) {
         boolean flag;
