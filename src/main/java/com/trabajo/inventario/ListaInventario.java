@@ -32,31 +32,30 @@ public class ListaInventario {
         actual.siguiente = nuevo;
     }
     
-    public void eliminar(Item producto) {
+    public void eliminar(Item item) {
         if(estaVacio()) {
             System.out.println("El inventario esta vacio.");
             return;
         }
         
-        if (primero.data.equals(producto)) {
-            size--;
+        // Si el primero coincide con el item, cambiamos el primero
+        if (primero.data.equals(item)) {
             primero = primero.siguiente;
+            size--;
             return;
         }
         
         NodoItem actual = primero;
-        while(actual.siguiente != null && !actual.siguiente.data.equals(producto)) {
+        
+        while(actual.siguiente != null) {
+            if(actual.siguiente.data.equals(item)) {
+                actual.siguiente = actual.siguiente.siguiente;
+                size--;
+                return;
+            }
+            
             actual = actual.siguiente;
         }
-        
-        // Elimina el producto.
-        if(actual.siguiente.data.equals(producto)) {
-           size--;
-           actual.siguiente = actual.siguiente.siguiente;
-           return;
-        }
-        
-        System.out.println("No se encontro el producto.");
     }
     
     // Devuelve un Item que coincida con el parametro "nombre".
@@ -107,14 +106,12 @@ public class ListaInventario {
             return 0;
         }
         
-        // Calcula el tamaño del primer elemento
         NodoItem actual = primero;
-        short tamaño = calcularTamañoProducto(primero.data);
-        
-        // Si existen más elementos, los calcula y los agrega a tamaño
-        while(actual.siguiente != null) {
-            actual = actual.siguiente;
+        short tamaño = (short) 0;
+
+        while(actual != null) {
             tamaño += calcularTamañoProducto(actual.data);
+            actual = actual.siguiente;
         }
         
         return tamaño;

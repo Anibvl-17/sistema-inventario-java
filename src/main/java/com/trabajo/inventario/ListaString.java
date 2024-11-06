@@ -48,25 +48,28 @@ public class ListaString {
      */
     public void eliminar(String data) {
         if(estaVacio()) {
+            System.out.println("La lista esta vacia.");
+            return;
+        }
+        
+        // Si el primero coincide con el item, cambiamos el primero
+        if (primero.data.equals(data)) {
+            primero = primero.siguiente;
+            size--;
             return;
         }
         
         NodoString actual = primero;
-        while(actual != null) {
-            
-            // Elimina el producto si coincide
-            if(actual.data.equals(data)) {
-               size--;
-               actual = actual.siguiente;
-               return;
+        
+        while(actual.siguiente != null) {
+            if(actual.siguiente.data.equals(data)) {
+                actual.siguiente = actual.siguiente.siguiente;
+                size--;
+                return;
             }
             
-            // Si no coincide, avanza al siguiente
             actual = actual.siguiente;
         }
-        
-        // Si recorre toda la lista y no lo encuentra, muestra el mensaje
-        System.out.println("No se encontro el producto.");
     }
     
     /**

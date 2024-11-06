@@ -22,10 +22,11 @@ public class Main {
     
     public static void menuPrincipal() {
         byte opcion;
-        byte cantidadProductos = inventario.size;
+        byte cantidadProductos;
         Item item;
         
         do  {
+            cantidadProductos = inventario.size;
             limpiarConsola();
             System.out.println("\t..:: Menu Principal ::..");
             System.out.println("Productos en inventario: " + cantidadProductos
