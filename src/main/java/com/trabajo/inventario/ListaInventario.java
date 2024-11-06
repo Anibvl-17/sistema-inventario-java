@@ -14,8 +14,8 @@ public class ListaInventario {
         return primero == null;
     }
     
-    public void agregar(Item producto) {
-        NodoItem nuevo = new NodoItem(producto);
+    public void agregar(Item item) {
+        NodoItem nuevo = new NodoItem(item);
         size++;
         
         if(estaVacio()) {
@@ -58,8 +58,13 @@ public class ListaInventario {
         }
     }
     
-    // Devuelve un Item que coincida con el parametro "nombre".
-    // Devuelve null si la lista esta vacia o si no encuentra el producto.
+    /**
+     * Obtiene el Item que coincide con el parametro.
+     * 
+     * @param nombre  el nombre del Item que se busca
+     * @return        el Item encontrado, o null si la lista esta vacia
+     *                 o no existe el elemento.
+     */
     public Item buscarPorNombre(String nombre) {
         if(estaVacio()) {
             System.out.println("El inventario esta vacio.");
@@ -100,7 +105,11 @@ public class ListaInventario {
         }
     }
     
-    // Calcula el tamaño en bytes de la lista
+    /**
+     * Calcula el tamaño de la lista.
+     * 
+     * @return el tamaño en bytes.
+     */
     public short calcularTamaño() {
         if(estaVacio()) {
             System.out.println("El inventario esta vacio.");
@@ -117,11 +126,16 @@ public class ListaInventario {
         
         return tamaño;
     }
-    
-    // Calcula el tamaño en bytes del producto, incluyendo el tamaño de la
-    // referencia del nodo (constante, 8 bytes)
-    public short calcularTamañoProducto(Item producto) {
-        if(producto == null) {
+
+    /**
+     * Calcula el tamaño en bytes del item, incluyendo el tamaño de la
+     * referencia del nodo (constante, 8 bytes)
+     * 
+     * @param item  el item al que se le calculara el tamaño
+     * @return      el tamaño en bytes
+     */
+    public short calcularTamañoProducto(Item item) {
+        if(item == null) {
             return 0;
         }
         
@@ -131,11 +145,11 @@ public class ListaInventario {
         
         // Calcula los tamaños de cada String.
         // Tamaño de un String: cantidad de caracteres * 2 bytes.
-        tamaño += (short) producto.getNombre().length() * 2;
-        tamaño += (short) producto.getMaterial().length() * 2;
-        tamaño += (short) producto.getColor().length() * 2;
-        tamaño += (short) producto.getMarca().length() * 2;
-        tamaño += (short) producto.getTipoPrenda().length() * 2;
+        tamaño += (short) item.getNombre().length() * 2;
+        tamaño += (short) item.getMaterial().length() * 2;
+        tamaño += (short) item.getColor().length() * 2;
+        tamaño += (short) item.getMarca().length() * 2;
+        tamaño += (short) item.getTipoPrenda().length() * 2;
         
         return tamaño;
     }
