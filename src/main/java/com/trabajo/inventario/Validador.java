@@ -137,7 +137,6 @@ public class Validador {
                 }
             }
         } while(!flag);
-        
         return str;
     }
 
@@ -209,13 +208,12 @@ public class Validador {
         boolean flag = false;
         do {
             tipoNuevo = Validador.ingresarString((byte)25, false);
-            if(!lista.contiene(tipoNuevo)) {
+            if(lista.contiene(tipoNuevo)) {
+                System.out.println("El tipo de prenda \"" + tipoNuevo + "\" ya existe");
+            } else {
                 lista.agregar(tipoNuevo);
                 System.out.println("El tipo de prenda se agrego con exito.");
                 flag = true;
-            } else {
-                System.out.println("El tipo de prenda \""
-                        + tipoNuevo + "\" ya existe");
             }
         } while(!flag);
         

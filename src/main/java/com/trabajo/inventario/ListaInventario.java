@@ -103,6 +103,7 @@ public class ListaInventario {
     // Calcula el tamaño en bytes de la lista
     public short calcularTamaño() {
         if(estaVacio()) {
+            System.out.println("El inventario esta vacio.");
             return 0;
         }
         

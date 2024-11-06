@@ -125,7 +125,7 @@ public class Main {
                             + "\" ($"+precioActual+") actualizado a $" + precioNuevo);
                     break;
 
-                case 3: // Modificar talla
+                case 3: // Talla
                     System.out.println("Ingrese la nueva talla:");
                     
                     byte tallaNueva = Validador.ingresarByte((byte)0, (byte)120);
@@ -137,7 +137,7 @@ public class Main {
                             + "\" (" + tallaActual + ") actualizada a " + tallaNueva);
                     break;
 
-                case 4: // Modificar material
+                case 4: // Material
                     System.out.println("Ingrese el nuevo material:");
                     
                     String materialActual = item.getMaterial();
@@ -149,7 +149,7 @@ public class Main {
                             + "\" (" + materialActual + ") actualizado a " + materialNuevo);
                     break;
 
-                case 5: // Modificar color
+                case 5: // Color
                     System.out.println("Ingrese el nuevo color:");
                     
                     String colorActual = item.getColor();
@@ -161,7 +161,7 @@ public class Main {
                             + "\" (" + colorActual + ") actualizado a " + colorNuevo);
                     break;
                     
-                case 6: // Modificar marca
+                case 6: // Marca
                     System.out.println("Ingrese la nueva marca:");
                     
                     String marcaActual = item.getMarca();
@@ -173,7 +173,7 @@ public class Main {
                             + "\" (" + marcaActual + ") actualizada a " + marcaNueva);
                     break;
                     
-                case 7: // Modificar tipo de prenda
+                case 7: // Prenda
                     System.out.println("Ingrese el nuevo tipo de prenda:");
 
                     String tipoActual = item.getTipoPrenda();
@@ -215,25 +215,27 @@ public class Main {
         item.setNombre(Validador.ingresarString((byte)35, true));
         
         System.out.print("Precio ");
-        item.setPrecio(Validador.ingresarInt(0, 10000000));
+        item.setPrecio(Validador.ingresarInt(1, 10000000));
         
         System.out.print("Talla ");
-        item.setTalla(Validador.ingresarByte((byte)0, (byte)100));
+        item.setTalla(Validador.ingresarByte((byte)1, (byte)120));
         
         System.out.print("Material ");
-        item.setMaterial(Validador.ingresarString((byte)30, false));
+        item.setMaterial(Validador.ingresarString((byte)25, false));
         
         System.out.print("Color ");
-        item.setColor(Validador.ingresarString((byte)30, false));
+        item.setColor(Validador.ingresarString((byte)25, false));
         
         System.out.print("Marca ");
-        item.setMarca(Validador.ingresarString((byte)30, true));
+        item.setMarca(Validador.ingresarString((byte)25, true));
         
         System.out.println("Tipo de Prenda:");
         item.setTipoPrenda(Validador.ingresarTipoPrenda(tiposPrenda));
+        System.out.println();
         
         System.out.println("Estilo:");
         item.setEstilo(Validador.ingresarEstilo());
+        System.out.println("");
         
         inventario.agregar(item);
         System.out.println("El producto \"" + item.getNombre() + 
@@ -247,7 +249,7 @@ public class Main {
         
         if(item != null) {
             inventario.eliminar(item);
-            System.out.println("El producto se elimino con exito.");
+            System.out.println("El producto \"" + item.getNombre() + "\" se elimino con exito.");
 
             generarHistorial((byte)2, "Producto \"" + item.getNombre() + "\".");
         }
@@ -313,7 +315,7 @@ public class Main {
     }
     
     /**
-     * Guarda cada movimiento en una ListaString a modo de historial
+     * Guarda las acciones realizadas en una ListaString a modo de historial
      * 
      * @param accion    0 = Inicio Programa; 1 = Agregar; 2 = Eliminar; 3 = Consultar;
      * @param detalle   detalle de la acción
