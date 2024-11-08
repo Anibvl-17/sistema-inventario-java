@@ -58,10 +58,9 @@ public class Main {
                 case 5: listarPorEstilo(); break;
                 case 6: 
                     item = buscarProducto();
-                    short tamanio = inventario.calcularTamañoProducto(item);
                     
                     if(item != null) {
-                        
+                        short tamanio = inventario.calcularTamañoProducto(item);
                         
                         System.out.println("El tamanio del producto es: " 
                                 + tamanio + " bytes.");
