@@ -61,8 +61,12 @@ public class Main {
                     short tamanio = inventario.calcularTamañoProducto(item);
                     
                     if(item != null) {
+                        
+                        
                         System.out.println("El tamanio del producto es: " 
                                 + tamanio + " bytes.");
+                        
+                        
                         generarHistorial((byte)3, "Tamanio de " + item.getNombre()
                                 + " = " + tamanio);
                     }
@@ -117,7 +121,7 @@ public class Main {
                     System.out.println("Ingrese el nuevo precio");
                     
                     int precioActual = item.getPrecio();
-                    int precioNuevo = Validador.ingresarInt(0, 100000000);
+                    int precioNuevo = Validador.ingresarInt(0, 1000000000);
                     item.setPrecio(precioNuevo);
                     
                     System.out.println("Precio actualizado.");
@@ -208,14 +212,14 @@ public class Main {
     
     public static void agregarProducto() {
         Item item = new Item();
-        
+
         System.out.println("Ingrese los datos del producto: ");
         
         System.out.print("Nombre ");
         item.setNombre(Validador.ingresarString((byte)35, true));
         
         System.out.print("Precio ");
-        item.setPrecio(Validador.ingresarInt(1, 10000000));
+        item.setPrecio(Validador.ingresarInt(1, 1000000000));
         
         System.out.print("Talla ");
         item.setTalla(Validador.ingresarByte((byte)1, (byte)120));
