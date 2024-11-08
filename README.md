@@ -14,7 +14,7 @@ estructuras de datos, en este caso, listas enlazadas.
 
 - `Generar historial` : Genera un historial con todos las acciones que se realizan.
 
-Como se mencionó anteriormente, el proyecto utiliza listas enlazadas ya que la cantidad e productos
+Como se mencionó anteriormente, el proyecto utiliza listas enlazadas ya que la cantidad de productos
 es variable y este tipo de estructura permite añadir y eliminar elementos de forma adecuada.
 
 > [!NOTE]
