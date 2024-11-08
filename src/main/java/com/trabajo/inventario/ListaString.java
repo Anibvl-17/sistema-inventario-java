@@ -30,15 +30,15 @@ public class ListaString {
         
         if(estaVacio()) {
             primero = nuevo;
-        } else {
-            NodoString actual = this.primero;
-            
-            while(actual.siguiente != null) {
-                actual = actual.siguiente;
-            }
-            
-            actual.siguiente = nuevo;
+            return;
         }
+
+        NodoString actual = primero;
+
+        while(actual.siguiente != null)
+            actual = actual.siguiente;
+        
+        actual.siguiente = nuevo;
     }
     
     /**
@@ -62,7 +62,7 @@ public class ListaString {
         NodoString actual = primero;
         
         while(actual.siguiente != null) {
-            if(actual.siguiente.data.equals(data)) {
+            if(actual.siguiente.data.equalsIgnoreCase(data)) {
                 actual.siguiente = actual.siguiente.siguiente;
                 size--;
                 return;
@@ -85,7 +85,7 @@ public class ListaString {
 
         NodoString actual = primero;
         while(actual != null) {
-            if(data.equals(actual.data))
+            if(data.equalsIgnoreCase(actual.data))
                 return true;
             
             actual = actual.siguiente;

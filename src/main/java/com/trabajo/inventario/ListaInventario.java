@@ -23,11 +23,10 @@ public class ListaInventario {
             return;
         }
 
-        NodoItem actual = this.primero;
+        NodoItem actual = primero;
         
-        while(actual.siguiente != null) {
+        while(actual.siguiente != null) 
             actual = actual.siguiente;
-        }
 
         actual.siguiente = nuevo;
     }
@@ -38,7 +37,7 @@ public class ListaInventario {
             return;
         }
         
-        // Si el primero coincide con el item, cambiamos el primero
+        // Si el primero coincide con el item, actualizamos el primero
         if (primero.data.equals(item)) {
             primero = primero.siguiente;
             size--;
@@ -73,7 +72,7 @@ public class ListaInventario {
 
         NodoItem actual = primero;
         while(actual != null) {
-            if (actual.data.getNombre().equals(nombre))
+            if (actual.data.getNombre().equalsIgnoreCase(nombre))
                 return actual.data;
             
             actual = actual.siguiente;
