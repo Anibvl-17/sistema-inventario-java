@@ -10,10 +10,20 @@ public class ListaInventario {
         this.size = 0;
     }
     
+    /**
+     * Verifica la existencia del primer elemento para determinar si la lista esta vacia.
+     * 
+     * @return true si existe el primero, false si no existe.
+     */
     public boolean estaVacio() {
         return primero == null;
     }
     
+    /**
+     * Agrega un item al final de la lista.
+     * 
+     * @param item el item a agregar
+     */
     public void agregar(Item item) {
         NodoItem nuevo = new NodoItem(item);
         size++;
@@ -31,6 +41,11 @@ public class ListaInventario {
         actual.siguiente = nuevo;
     }
     
+    /**
+     * Elimina el item especificado
+     * 
+     * @param item el item a eliminar
+     */
     public void eliminar(Item item) {
         if(estaVacio()) {
             System.out.println("El inventario esta vacio.");
