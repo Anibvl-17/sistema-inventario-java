@@ -108,9 +108,9 @@ public class ListaString {
         byte i = 1;
         
         while(actual != null) {
-            i++;
             if(modoLista) System.out.println(i + ". " + actual.data);
             else System.out.println(actual.data);
+            i++;
             
             actual = actual.siguiente;
         }

@@ -109,7 +109,7 @@ public class Main {
                     System.out.println("Ingrese el nuevo nombre");
                     
                     String nombreActual = item.getNombre();
-                    String nombreNuevo = Validador.ingresarString((byte)35, true);
+                    String nombreNuevo = Validador.ingresarNombre(inventario);
                     item.setNombre(nombreNuevo);
                     
                     System.out.println("Nombre actualizado.");
@@ -215,7 +215,7 @@ public class Main {
         System.out.println("Ingrese los datos del producto: ");
         
         System.out.print("Nombre ");
-        item.setNombre(Validador.ingresarString((byte)35, true));
+        item.setNombre(Validador.ingresarNombre(inventario));
         
         System.out.print("Precio ");
         item.setPrecio(Validador.ingresarInt(1, 1000000000));

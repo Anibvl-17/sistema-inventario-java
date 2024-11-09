@@ -139,6 +139,38 @@ public class Validador {
         } while(!flag);
         return str;
     }
+    
+    /**
+     * Valida el ingreso de un nombre, verificando que este no exista en la lista.
+     * 
+     * @param lista lista de Items para verificar que no exista.
+     * @return      el nombre del Item
+     */
+    public static String ingresarNombre(ListaInventario lista) {
+        String nombre;
+        boolean existe;
+        
+        do {
+            nombre = ingresarString((byte)35, true);
+            existe = false;
+            
+            if(!lista.estaVacio()) {
+                NodoItem actual = lista.primero;
+                
+                while(actual != null) {
+                    if (actual.data.getNombre().equalsIgnoreCase(nombre)) {
+                        System.out.println("El producto ya existe.");
+                        existe = true;
+                        break;
+                    }
+                    actual = actual.siguiente;
+                }
+            }
+            
+        } while(existe);
+        
+        return nombre;
+    }
 
     /**
      * Muestra la lista de estilos y valida el ingreso

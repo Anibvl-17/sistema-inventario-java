@@ -92,7 +92,7 @@ public class ListaInventario {
         while(actual != null) {
             System.out.println();
             System.out.println("..:: " + actual.data.getNombre() + " ::..");
-            System.out.println("Precio: " + actual.data.getPrecio());
+            System.out.println("Precio: $" + actual.data.getPrecio());
             System.out.println("Talla: " + actual.data.getTalla());
             System.out.println("Material: " + actual.data.getMaterial());
             System.out.println("Color: " + actual.data.getColor());
