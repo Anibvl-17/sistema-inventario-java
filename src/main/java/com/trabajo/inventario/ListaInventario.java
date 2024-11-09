@@ -97,6 +97,9 @@ public class ListaInventario {
         return null;
     }
     
+    /**
+     * Muestra todos los elementos de la lista.
+     */
     public void mostrar() {
         if(estaVacio()) {
             System.out.println("El inventario esta vacio.");
