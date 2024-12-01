@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Main {
     
-    private static ListaInventario inventario;
+    private static ListaInventario inventario = new ListaInventario();
     private static ListaString tiposPrenda;
     private static ListaString historial;
     private static Scanner sc;
@@ -15,8 +15,7 @@ public class Main {
         sc = new Scanner(System.in);
         
         generarHistorial((byte)0, "");
-        
-        cargarInventario();
+
         menuPrincipal();
     }
     
@@ -32,52 +31,97 @@ public class Main {
             System.out.println("Productos en inventario: " + cantidadProductos
                     + " ("+ inventario.calcularTamaño() +" bytes)");
             System.out.println("Ingrese una opcion:");
-            System.out.println("1. Ver productos      | 6. Consultar tamanio producto");
-            System.out.println("2. Agregar producto   | 7. Consultar talla");
-            System.out.println("3. Modificar producto | 8. Consultar material");
-            System.out.println("4. Eliminar producto  | 9. Registrar tipo de prenda");
-            System.out.println("5. Listar por estilo  | 10. Mostrar historial");
-            System.out.println("0. Salir");
 
-            opcion = Validador.ingresarByte((byte)0, (byte)10);
+            if (inventario.estaVacio()) {
+                // Opciones para cuando no hay elementos en el inventario
+                System.out.println("1. Agregar producto");
+                System.out.println("2. Registrar tipo de prenda");
+                System.out.println("3. Mostrar historial");
+                System.out.println("0. Salir");
+
+                opcion = Validador.ingresarByte((byte)0, (byte)3);
+                System.out.println();
             
-            System.out.println();
+                switch (opcion) {
+                    case 1: 
+                        // Agregar producto
+                        agregarProducto(); break;
+                    case 2: 
+                        // Registrar tipo de prenda
+                        String nuevoTipo = Validador.registrarTipoPrenda(tiposPrenda);
+                        generarHistorial((byte)1, "Tipo de prenda \"" + nuevoTipo + "\""); 
+                        break;
+                    case 3:
+                        // Mostrar historial
+                        historial.mostrar(false);
+                        break;
+                    default: 
+                        // Salir
+                        System.out.println("..::: Fin del programa :::..");
+                        break;
+                }
+            } else {
+                // Opciones para cuando hay elementos en el inventario
+                System.out.println("1. Ver productos      | 6. Consultar tamanio producto");
+                System.out.println("2. Agregar producto   | 7. Consultar talla");
+                System.out.println("3. Modificar producto | 8. Consultar material");
+                System.out.println("4. Eliminar producto  | 9. Registrar tipo de prenda");
+                System.out.println("5. Listar por estilo  | 10. Mostrar historial");
+                System.out.println("0. Salir");
+                opcion = Validador.ingresarByte((byte)0, (byte)10);
+                System.out.println();
             
-            switch (opcion) {
-                case 1:
-                    inventario.mostrar();
-                    generarHistorial((byte)3, "Mostrar inventario");
-                    break;
-                case 2: agregarProducto(); break;
-                case 3:
-                    item = buscarProducto();
-                    
-                    if (item != null) menuModificacion(item);
-                    break;
-                case 4: eliminarProducto(); break;
-                case 5: listarPorEstilo(); break;
-                case 6: 
-                    item = buscarProducto();
-                    
-                    if(item != null) {
-                        short tamanio = inventario.calcularTamañoProducto(item);
+                switch (opcion) {
+                    case 1:
+                        // Ver productos
+                        inventario.mostrar();
+                        generarHistorial((byte)3, "Mostrar inventario");
+                        break;
+                    case 2: 
+                        // Agregar producto
+                        agregarProducto(); 
+                        break;
+                    case 3:
+                        // Modificar producto
+                        item = buscarProducto();
+                        if (item != null) menuModificacion(item);
+                        break;
+                    case 4: 
+                        // Eliminar producto
+                        eliminarProducto(); 
+                        break;
+                    case 5: 
+                        // Listar por estilo
+                        listarPorEstilo(); 
+                        break;
+                    case 6: 
+                        // Consultar tamaño producto
+                        item = buscarProducto();
                         
-                        System.out.println("El tamanio del producto es: " 
-                                + tamanio + " bytes.");
-                        
-                        
-                        generarHistorial((byte)3, "Tamanio de " + item.getNombre()
-                                + " = " + tamanio);
-                    }
-                    break;
-                case 7: consultarTalla(); break;
-                case 8: consultarMaterial(); break;
-                case 9:
-                    String nuevoTipo = Validador.registrarTipoPrenda(tiposPrenda);
-                    generarHistorial((byte)1, "Tipo de prenda \"" + nuevoTipo + "\"");
-                    break;
-                case 10: historial.mostrar(false); break;
-                default: System.out.println("..::: Fin del programa :::.."); break;
+                        if(item != null) {
+                            short tamanio = inventario.calcularTamañoProducto(item);
+                            
+                            System.out.println("El tamanio del producto es: " 
+                                    + tamanio + " bytes.");
+                            generarHistorial((byte)3, "Tamanio de " + item.getNombre()
+                                    + " = " + tamanio);
+                        }
+                        break;
+                    case 7: 
+                        // Consultar talla
+                        consultarTalla();
+                        break;
+                    case 8:
+                        // Consultar material
+                        consultarMaterial();
+                        break;
+                    case 9:
+                        String nuevoTipo = Validador.registrarTipoPrenda(tiposPrenda);
+                        generarHistorial((byte)1, "Tipo de prenda \"" + nuevoTipo + "\"");
+                        break;
+                    case 10: historial.mostrar(false); break;
+                    default: System.out.println("..::: Fin del programa :::.."); break;
+                }
             }
             
             // Pausa antes de regresar, siempre que la opción sea distinta de 0 (salir) y
@@ -330,7 +374,7 @@ public class Main {
         DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
         String fecha = LocalDateTime.now().format(formatoFecha);
         String mensaje ="["+fecha+"] ";
-        
+
         switch(accion) {
             case 0: mensaje += "Programa iniciado."; break;
             case 1: mensaje += "Agregar   : " + detalle; break;
@@ -341,37 +385,6 @@ public class Main {
         }
         
         historial.agregar(mensaje);
-    }
-    
-    // Pendiente
-    public static void cargarInventario()  {
-        inventario = new ListaInventario();
-        
-        Item item1 = new Item("Producto 1", 100, (byte)10, "Mat1", "Col1", "Mar1",
-            "Tip1", (byte)1);
-        Item item2 = new Item("Producto 2", 200, (byte)20, "Mat2", "Col2", "Mar2",
-            "Tip2", (byte)2);
-        Item item3 = new Item("Producto 3", 300, (byte)30, "Mat3", "Col3", "Mar3",
-            "Tip3", (byte)3);
-        Item item4 = new Item("Producto 4", 400, (byte)40, "Mat4", "Col4", "Mar4",
-            "Tip4", (byte)4);
-        
-        inventario.agregar(item1);
-        inventario.agregar(item2);
-        inventario.agregar(item3);
-        inventario.agregar(item4);
-        
-        tiposPrenda = new ListaString();
-        tiposPrenda.agregar("Pantalon");
-        tiposPrenda.agregar("Vestido");
-        tiposPrenda.agregar("Polera");
-        tiposPrenda.agregar("Blusa");
-        tiposPrenda.agregar("Falda");
-    }
-    
-    // Pendiente
-    public static void guardarInventario() {
-        // TODO Guardar inventario
     }
     
     /**
