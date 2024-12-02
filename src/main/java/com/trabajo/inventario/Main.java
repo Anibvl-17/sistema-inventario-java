@@ -126,7 +126,8 @@ public class Main {
             
             // Pausa antes de regresar, siempre que la opción sea distinta de 0 (salir) y
             // distinta de 3 (menu modificar ya hace una pausa)
-            if (opcion != 0 && opcion != 3) pausa();
+            if (opcion != 0 && opcion != 3 && !inventario.estaVacio()) pausa();
+            else if (inventario.estaVacio() && opcion != 0) pausa();
             
         } while(opcion != 0);
     }
